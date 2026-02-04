@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from "react";
+import { useState } from "react";
 import { addProduct } from "@/app/actions";
 import AuthModal from "./AuthModal";
 import { Button } from "@/components/ui/button";
@@ -8,10 +8,10 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
-export const AddProductForm = () => {
-const [url, setUrl] = useState("");
-const [loading, setLoading] = useState(false);
- const [showAuthModal, setShowAuthModal] = useState(false);
+export default function AddProductForm({ user }) {
+  const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +39,8 @@ const [loading, setLoading] = useState(false);
   };
 
   return (
-     <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto">
+    <>
+      <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto">
         <div className="flex flex-col sm:flex-row gap-2">
           <Input
             type="url"
@@ -68,5 +69,11 @@ const [loading, setLoading] = useState(false);
           </Button>
         </div>
       </form>
-  )
+
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
+    </>
+  );
 }

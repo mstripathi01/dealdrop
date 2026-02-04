@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { signOut } from "@/app/actions";
 import AuthModal from "./AuthModal";
 import { Button } from "@/components/ui/button";
 import { LogIn, LogOut } from "lucide-react";
-import { signOut } from "@/app/actions";
 
 export default function AuthButton({ user }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
+
   if (user) {
     return (
       <form action={signOut}>
