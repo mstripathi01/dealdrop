@@ -59,7 +59,7 @@ export async function addProduct(formData) {
         {
           onConflict: "user_id,url", // Unique constraint on user_id + url
           ignoreDuplicates: false, // Always update if exists
-        }
+        },
       )
       .select()
       .single();

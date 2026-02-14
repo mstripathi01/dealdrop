@@ -12,10 +12,9 @@ export async function POST(request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Use service role to bypass RLS
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
+      process.env.SUPABASE_SERVICE_ROLE_KEY,
     );
 
     const { data: products, error: productsError } = await supabase
@@ -76,7 +75,7 @@ export async function POST(request) {
                 user.email,
                 product,
                 oldPrice,
-                newPrice
+                newPrice,
               );
 
               if (emailResult.success) {
